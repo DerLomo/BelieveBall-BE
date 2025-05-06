@@ -1,0 +1,30 @@
+import express from "express";
+import dotenv from "dotenv";
+import { ticketRoutes } from "./routes/ticket.routes";
+import { drawRoutes } from "./routes/draw.routes";
+import { jackpotRoutes } from "./routes/jackpot.routes";
+
+dotenv.config();
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// Middleware
+app.use(express.json());
+
+// Routes
+app.use("/api/tickets", ticketRoutes);
+app.use("/api/draws", drawRoutes);
+app.use("/api/jackpot", jackpotRoutes);
+
+// Root route
+app.get("/", (req, res) => {
+  res.send("BelieveBall API is running!");
+});
+
+// Start server
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
+
+export default app;
