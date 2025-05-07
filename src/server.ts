@@ -1,3 +1,4 @@
+
 import express from "express";
 import dotenv from "dotenv";
 import { ticketRoutes } from "./routes/ticket.routes";
@@ -13,13 +14,13 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
 // Routes
-app.use("/api/tickets", ticketRoutes);
-app.use("/api/draws", drawRoutes);
-app.use("/api/jackpot", jackpotRoutes);
+app.use('/api/tickets', ticketRoutes);
+app.use('/api/draws', drawRoutes);
+app.use('/api/jackpot', jackpotRoutes);
 
-// Root route
-app.get("/", (req, res) => {
-  res.send("BelieveBall API is running!");
+// Health check route
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'OK', message: 'BelieveBall API is running' });
 });
 
 // Start server
